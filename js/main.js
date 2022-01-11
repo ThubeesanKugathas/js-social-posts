@@ -92,7 +92,6 @@ const containerHtml = document.getElementById('container');
 // funzione per stampare gli oggetti
 for (let i = 0; i < postList.length; i++) {
     generateHtml(postList[i]);
-    
 }
 
 const likeButtonHtml = document.querySelectorAll('.js-like-button');
