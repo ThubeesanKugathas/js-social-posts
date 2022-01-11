@@ -1,10 +1,3 @@
-/*
-Milestone 3
-Se clicchiamo sul tasto “Mi Piace” cambiamo il colore al testo del bottone e
-incrementiamo il counter dei likes relativo.
-Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
-*/
-
 // FUNZIONI
 
 function generateHtml(object) {
@@ -35,7 +28,7 @@ function generateHtml(object) {
                     </a>
                 </div>
                 <div class="likes__counter">
-                    Piace a <b id="like-counter-1" class="js-likes-counter">${object.likes}</b> persone
+                    Piace a <b id="like-counter-${object.id}" class="js-likes-counter">${object.likes}</b> persone
                 </div>
             </div> 
         </div>            
@@ -100,15 +93,19 @@ const containerHtml = document.getElementById('container');
 for (let i = 0; i < postList.length; i++) {
     generateHtml(postList[i]);
     
-    // per ogni elemento della funzione dell'elemento (i) inserisco un addeventlistener
-    // chiedere meglio dopo ai teachers TO DO!
-    let likeButtonHtml = document.querySelectorAll('.js-like-button');
-
-    likeButtonHtml.forEach(function (i) {
-        i.addEventListener('click', function() {
-            i.classList.toggle("like-button--liked");
-
-        });
-    });
 }
 
+const likeButtonHtml = document.querySelectorAll('.js-like-button');
+
+for (let j = 0; j < likeButtonHtml.length; j++) {
+    
+    likeButtonHtml[j].addEventListener('click', function() {
+
+        let counter = document.getElementById(`like-counter-${j + 1}`);
+        postList[j].likes++;
+        counter.innerHTML = postList[j].likes;
+        likeButtonHtml[j].classList.toggle('like-button--liked');
+
+    })
+    
+}
