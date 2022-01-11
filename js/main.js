@@ -1,28 +1,8 @@
 /*
-Descrizione
-Ricreiamo un feed social aggiungendo al layout di base fornito, il nostro script JS in cui:
-
-Milestone 1
-Creiamo il nostro array di oggetti che rappresentano ciascun post.
-Ogni post dovrà avere le informazioni necessarie per stampare la relativa card:
-id del post,
-numero progressivo da 1 a n nome autore,
-foto autore,
-data in formato americano (mm-gg-yyyy),
-testo del post,
-immagine (non tutti i post devono avere una immagine),
-numero di likes.
-Per le immagini va bene utilizzare qualsiasi servizio di placeholder 
-ad es. Unsplash (https://unsplash.it/300/300?image=<id>
-
-Milestone 2
-Prendendo come riferimento il layout di esempio presente nell’html, stampiamo i post del nostro feed.
-
 Milestone 3
 Se clicchiamo sul tasto “Mi Piace” cambiamo il colore al testo del bottone e
 incrementiamo il counter dei likes relativo.
 Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
-
 */
 
 // FUNZIONI
@@ -49,7 +29,7 @@ function generateHtml(object) {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                    <a class="like-button js-like-button" data-postid="${object.id}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -119,4 +99,17 @@ const containerHtml = document.getElementById('container');
 // funzione per stampare gli oggetti
 for (let i = 0; i < postList.length; i++) {
     generateHtml(postList[i]);
+    
+    let likeButtonHtml = document.querySelectorAll('.js-like-button');
+
+    console.log(postList[i].likes);
+
+    // per ogni elemento della funzione dell'elemento (i) inserisco un addeventlistener
+    // chiedere meglio dopo ai teachers TO DO!
+    likeButtonHtml.forEach(function (i) {
+        i.addEventListener('click', function() {
+            i.classList.toggle("like-button--liked");
+        });
+    });
 }
+
