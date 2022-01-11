@@ -100,15 +100,14 @@ const containerHtml = document.getElementById('container');
 for (let i = 0; i < postList.length; i++) {
     generateHtml(postList[i]);
     
-    let likeButtonHtml = document.querySelectorAll('.js-like-button');
-
-    console.log(postList[i].likes);
-
     // per ogni elemento della funzione dell'elemento (i) inserisco un addeventlistener
     // chiedere meglio dopo ai teachers TO DO!
+    let likeButtonHtml = document.querySelectorAll('.js-like-button');
+
     likeButtonHtml.forEach(function (i) {
         i.addEventListener('click', function() {
             i.classList.toggle("like-button--liked");
+
         });
     });
 }
